@@ -3,7 +3,7 @@
 runner:
   total_steps: 200000
   gradient_clipping: 1
-  gradient_accumulate_steps: 4
+  gradient_accumulate_steps: 1
 
   log_step: 500
   eval_step: 5000
@@ -19,18 +19,18 @@ optimizer:
   lr: 1.0e-4
 
 # # comment the whole scheduler config block to disable learning rate scheduling
-# scheduler:
-#   name: linear_schedule_with_warmup
-#   num_warmup_steps: 5000
+scheduler:
+   name: linear_schedule_with_warmup
+   num_warmup_steps: 500
 
 downstream_expert: 
   datarc:
-    file_path: /path/to/VoxCeleb1
+    file_path: D:/datasets/voxceleb1
     meta_data: ./downstream/voxceleb1/veri_test_class.txt
-    num_workers: 12
-    train_batch_size: 8
+    num_workers: 4
+    train_batch_size: 2
     eval_batch_size: 1
-    max_timestep: 128000
+    max_timestep: 64000
 
   modelrc:
     projector_dim: 256

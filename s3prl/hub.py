@@ -1,4 +1,5 @@
 from s3prl.downstream.timit_phone.hubconf import timit_posteriorgram
+"""
 from s3prl.upstream.apc.hubconf import *
 from s3prl.upstream.ast.hubconf import *
 from s3prl.upstream.audio_albert.hubconf import *
@@ -35,7 +36,17 @@ from s3prl.upstream.vq_wav2vec.hubconf import *
 from s3prl.upstream.wav2vec2.hubconf import *
 from s3prl.upstream.wav2vec.hubconf import *
 from s3prl.upstream.wavlm.hubconf import *
-
+"""
+try:
+    import sys
+    sys.path.append("C:/Users/chace/code/spectrogram_ssl")
+    
+    from src.modules.ssast_v2.s3prl_compat import (
+        ssast_v2_base
+    )
+    
+except ImportError:
+    print("Could not find spectrogram_ssl modules")
 
 def options(only_registered_ckpt: bool = False):
     all_options = []

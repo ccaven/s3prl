@@ -2232,7 +2232,7 @@ _NAME_PARSER = r"(decoder|encoder|quant_noise)_(.*)"
 @dataclass
 class EncDecBaseConfig:
     embed_path: Optional[str] = field(
-        default=None, metadata={"help": "path to pre-trained embedding"}
+        default_factory=None, metadata={"help": "path to pre-trained embedding"}
     )
     embed_dim: Optional[int] = field(
         default=512, metadata={"help": "embedding dimension"}
@@ -2318,13 +2318,15 @@ class TransformerConfig:
         },
     )
     adaptive_input: bool = False
-    encoder: EncDecBaseConfig = EncDecBaseConfig()
+    encoder: EncDecBaseConfig = field(
+        default_factory=EncDecBaseConfig
+    )
     # TODO should really be in the encoder config
     max_source_positions: int = field(
         default=DEFAULT_MAX_SOURCE_POSITIONS,
         metadata={"help": "Maximum input length supported by the encoder"},
     )
-    decoder: DecoderConfig = DecoderConfig()
+    decoder: DecoderConfig = field(default_factory=DecoderConfig)
     # TODO should really be in the decoder config
     max_target_positions: int = field(
         default=DEFAULT_MAX_TARGET_POSITIONS,

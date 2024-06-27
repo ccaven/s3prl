@@ -1,1 +1,5 @@
 configs/amsoftmax.yaml
+
+downstream_expert:
+  datarc:
+    file_path: D:/datasets/voxceleb1
